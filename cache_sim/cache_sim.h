@@ -1,0 +1,3 @@
+#define NUM_ARGS 3
+#define NUM_BYTES_PER_REF     3
+#define NUM_MEM_REFERENCES    60000
