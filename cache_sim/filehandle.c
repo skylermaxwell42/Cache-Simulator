@@ -8,7 +8,8 @@ void parse_trace(char* trace_path, uint8_t data[][NUM_BYTES_PER_REF]) {
   file = fopen(trace_path, "r");
   if (!file) {
     printf("Could not load file from: %s\n", trace_path);
-    return;
+    printf("Use './cache_sim' for usage . . .\n");
+    exit(0);
   }
 
   int ref_count = 0;
