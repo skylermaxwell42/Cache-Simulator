@@ -26,5 +26,4 @@
   void configure_simulations(Simulation sims[]);
   void init_simulation(Simulation* sim, int k, int n, int sim_type);
   void run_simulation(Simulation sim, SimulationResult* sim_result, uint8_t data[][NUM_BYTES_PER_REF]);
-
 #endif

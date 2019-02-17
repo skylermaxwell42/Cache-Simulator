@@ -22,7 +22,7 @@ void configure_simulations(Simulation sims[]) {
         init_simulation(&sims[i], k, n, sim_types[sim_idx]);
 
         // DEBUG START
-        printf("Sim Type: %d k: %02d n: %03d I: %02d\n", sims[i].cache.sim_type, sims[i].k, sims[i].n, i);
+        //printf("Sim Type: %d k: %02d n: %03d I: %02d\n", sims[i].cache.sim_type, sims[i].k, sims[i].n, i);
         // DEBUG END
         i++;
       }
@@ -40,14 +40,15 @@ void run_simulation(Simulation sim, SimulationResult* sim_result, uint8_t data[]
     for (int i = 0; i < NUM_BYTES_PER_REF; i++) {
       addr |= (data[data_idx][i]<<(8*i));
     }
-    printf("Accessing Cache with addr: %06x\n", addr);
+    //printf("Accessing Cache with addr: %06x\n", addr);
     if (!access(&sim.cache, addr)) {
         sim_result->num_misses++;
     }
     sim_result->num_refernces++;
-    if (data_idx >= 100) {
+    if (data_idx == 10000) {
       break;
     }
+    //printf("MIS RATE: %f\n", (float) sim_result->num_misses/sim_result->num_refernces);
   }
 }
 

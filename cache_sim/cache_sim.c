@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
   //  - sim_type    (int) Mapped integer to simualtion type (LRU or FIFO) replacement policies
   Simulation sims[NUM_SIMS_PER_TYPE*NUM_SIM_TYPES];
   configure_simulations(sims);
-  
+
   // DEBUG BEGIN
   /**
   for (int i=0;i<16;i++) {
@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
   SimulationResult sim_results[NUM_SIMS_PER_TYPE*NUM_SIM_TYPES];
   for (int sim_idx = 0; sim_idx < NUM_SIMS_PER_TYPE*NUM_SIM_TYPES; sim_idx++) {
     run_simulation(sims[sim_idx], &sim_results[sim_idx], data);
+    printf("Simulation #%02d Miss Rate: %f\n", sim_idx+1, (float) sim_results[sim_idx].num_misses/sim_results[sim_idx].num_refernces);
   }
   // DEBUG START
   /**
