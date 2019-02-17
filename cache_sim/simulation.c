@@ -1,5 +1,6 @@
 #include "cache_sim.h"
 #include "simulation.h"
+#include "cache.h"
 
 #define NUM_K_OPTS    4
 #define NUM_KN_OPTS   2
@@ -17,14 +18,11 @@ void configure_simulations(Simulation sims[]) {
         int k = k_opts[k_idx];
         int kn = kn_opts[kn_idx];
         int n = kn / k;
-        // DEBUG START
-        //printf("Sim Type: %d k: %d kn: %d I: %d\n", sim_types[sim_idx], k, kn, i);
-        // DEBUG END
 
         init_simulation(&sims[i], k, n, sim_types[sim_idx]);
 
         // DEBUG START
-        //printf("Sim Type: %d k: %d kn: %d I: %d\n", sims[i].sim_type, sims[i].k, sims[i].n*sims[i].k, i);
+        printf("Sim Type: %d k: %02d n: %03d I: %02d\n", sims[i].cache.sim_type, sims[i].k, sims[i].n, i);
         // DEBUG END
         i++;
       }
@@ -33,15 +31,30 @@ void configure_simulations(Simulation sims[]) {
   return;
 }
 
-void run_simulation(Simulation sim, SimulationResult* sim_result) {
+void run_simulation(Simulation sim, SimulationResult* sim_result, uint8_t data[][NUM_BYTES_PER_REF]) {
   sim_result->num_misses = 0;
   sim_result->num_refernces = 0;
+  //printf("HELOOOO: %d\n", sim.cache.cache_sets[0].tag);
+  for (int data_idx = 0; data_idx < NUM_MEM_REFS; data_idx++) {
+    int addr = 0;
+    for (int i = 0; i < NUM_BYTES_PER_REF; i++) {
+      addr |= (data[data_idx][i]<<(8*i));
+    }
+    printf("Accessing Cache with addr: %06x\n", addr);
+    if (!access(&sim.cache, addr)) {
+        sim_result->num_misses++;
+    }
+    sim_result->num_refernces++;
+    if (data_idx >= 100) {
+      break;
+    }
+  }
 }
 
 void init_simulation(Simulation* sim, int k, int n, int sim_type) {
   sim->l = NUM_BYTES_PER_LINES;
   sim->k = k;
   sim->n = n;
-  sim->sim_type = sim_type;
+  init_cache(&sim->cache, sim_type, n, k);
   sim->cache_size_bytes = NUM_BYTES_PER_LINES * k * n;
 }

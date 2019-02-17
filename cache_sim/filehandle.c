@@ -13,9 +13,8 @@ void parse_trace(char* trace_path, uint8_t data[][NUM_BYTES_PER_REF]) {
   }
 
   int ref_count = 0;
-  while (!feof(file) && (ref_count < NUM_MEM_REFERENCES)) {
-    // Re-ordering from big to little endian for ease of use
-    for (int i=(NUM_BYTES_PER_REF-1); i >= 0; i--) {
+  while (!feof(file) && (ref_count < NUM_MEM_REFS)) {
+    for (int i = 0; i < NUM_BYTES_PER_REF; i++) {
       // Loading 1-byte into buffer at a time
       fscanf(file, "%c", &data[ref_count][i]);
     }
