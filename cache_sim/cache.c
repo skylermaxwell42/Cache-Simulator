@@ -1,5 +1,7 @@
+/** Cache Simulator [cache.c] **/
 #include "cache.h"
 #include "simulation.h"
+
 int access(Cache* cache, int addr) {
   int idx_bits = log2(cache->num_sets);
   int tag = (addr & cache->tag_mask) >> (int) (idx_bits + log2(NUM_BYTES_PER_LINES));
@@ -106,15 +108,15 @@ void replace_LRU(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
   int set_size = find_length(*cache_set);
   if (hit_index != -1) {
     delete(cache_set, hit_index);
-    prepend(cache_set, tag);
+    append(cache_set, tag);
   }
   else {
     if (set_size <= n_lines) {
-      append(cache_set, tag);
+      prepend(cache_set, tag);
     }
     else {
-      delete(cache_set, n_lines-1);
-      prepend(cache_set, tag);
+      delete(cache_set, 1);
+      append(cache_set, tag);
     }
   }
 }
@@ -122,11 +124,11 @@ void replace_LRU(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
 void replace_FIFO(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
   int set_size = find_length(*cache_set);
   if (set_size <= n_lines) {
-    append(cache_set, tag);
+    prepend(cache_set, tag);
   }
   else {
-    delete(cache_set, n_lines-1);
-    prepend(cache_set, tag);
+    delete(cache_set, 1);
+    append(cache_set, tag);
   }
 }
 

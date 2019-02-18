@@ -1,3 +1,4 @@
+/** Cache Simulator [filehandle.c] **/
 #include "filehandle.h"
 #include "cache_sim.h"
 

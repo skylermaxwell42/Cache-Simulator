@@ -1,3 +1,4 @@
+/** Cache Simulator [cache.h] **/
 #include "cache_sim.h"
 
 #ifndef CACHE_H

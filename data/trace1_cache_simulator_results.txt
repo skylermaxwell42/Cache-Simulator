@@ -7,8 +7,8 @@ Cache Size: 512 bytes
 KN: 064  K: 002  N032
 
 Simulation Results:
-Miss Rate:    0.660550
-Run Time:    10.00 ms
+Miss Rate:    0.615517
+Run Time:    15.00 ms
 ---------------------------------------------------
 Running Simulation #02:
 Simulation Type: LRU
@@ -16,8 +16,8 @@ Cache Size: 512 bytes
 KN: 064  K: 004  N016
 
 Simulation Results:
-Miss Rate:    0.616350
-Run Time:    10.00 ms
+Miss Rate:    0.550900
+Run Time:    14.00 ms
 ---------------------------------------------------
 Running Simulation #03:
 Simulation Type: LRU
@@ -25,8 +25,8 @@ Cache Size: 512 bytes
 KN: 064  K: 008  N008
 
 Simulation Results:
-Miss Rate:    0.575700
-Run Time:    11.00 ms
+Miss Rate:    0.431200
+Run Time:    14.00 ms
 ---------------------------------------------------
 Running Simulation #04:
 Simulation Type: LRU
@@ -34,8 +34,8 @@ Cache Size: 512 bytes
 KN: 064  K: 016  N004
 
 Simulation Results:
-Miss Rate:    0.564400
-Run Time:    18.00 ms
+Miss Rate:    0.364000
+Run Time:    24.00 ms
 ---------------------------------------------------
 Running Simulation #05:
 Simulation Type: LRU
@@ -43,8 +43,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 002  N128
 
 Simulation Results:
-Miss Rate:    0.563183
-Run Time:    9.00 ms
+Miss Rate:    0.531983
+Run Time:    12.00 ms
 ---------------------------------------------------
 Running Simulation #06:
 Simulation Type: LRU
@@ -52,8 +52,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 004  N064
 
 Simulation Results:
-Miss Rate:    0.512550
-Run Time:    10.00 ms
+Miss Rate:    0.454100
+Run Time:    13.00 ms
 ---------------------------------------------------
 Running Simulation #07:
 Simulation Type: LRU
@@ -61,8 +61,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 008  N032
 
 Simulation Results:
-Miss Rate:    0.505017
-Run Time:    12.00 ms
+Miss Rate:    0.354133
+Run Time:    19.00 ms
 ---------------------------------------------------
 Running Simulation #08:
 Simulation Type: LRU
@@ -70,8 +70,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 016  N016
 
 Simulation Results:
-Miss Rate:    0.493983
-Run Time:    17.00 ms
+Miss Rate:    0.287850
+Run Time:    21.00 ms
 ---------------------------------------------------
 Running Simulation #09:
 Simulation Type: FIFO
@@ -79,8 +79,8 @@ Cache Size: 512 bytes
 KN: 064  K: 002  N032
 
 Simulation Results:
-Miss Rate:    0.598017
-Run Time:    11.00 ms
+Miss Rate:    0.710367
+Run Time:    9.00 ms
 ---------------------------------------------------
 Running Simulation #10:
 Simulation Type: FIFO
@@ -88,7 +88,7 @@ Cache Size: 512 bytes
 KN: 064  K: 004  N016
 
 Simulation Results:
-Miss Rate:    0.607350
+Miss Rate:    0.640050
 Run Time:    10.00 ms
 ---------------------------------------------------
 Running Simulation #11:
@@ -97,8 +97,8 @@ Cache Size: 512 bytes
 KN: 064  K: 008  N008
 
 Simulation Results:
-Miss Rate:    0.536117
-Run Time:    11.00 ms
+Miss Rate:    0.573750
+Run Time:    15.00 ms
 ---------------------------------------------------
 Running Simulation #12:
 Simulation Type: FIFO
@@ -106,7 +106,7 @@ Cache Size: 512 bytes
 KN: 064  K: 016  N004
 
 Simulation Results:
-Miss Rate:    0.470017
+Miss Rate:    0.504600
 Run Time:    15.00 ms
 ---------------------------------------------------
 Running Simulation #13:
@@ -115,8 +115,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 002  N128
 
 Simulation Results:
-Miss Rate:    0.536450
-Run Time:    12.00 ms
+Miss Rate:    0.582867
+Run Time:    9.00 ms
 ---------------------------------------------------
 Running Simulation #14:
 Simulation Type: FIFO
@@ -124,8 +124,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 004  N064
 
 Simulation Results:
-Miss Rate:    0.495400
-Run Time:    10.00 ms
+Miss Rate:    0.533100
+Run Time:    11.00 ms
 ---------------------------------------------------
 Running Simulation #15:
 Simulation Type: FIFO
@@ -133,8 +133,8 @@ Cache Size: 2048 bytes
 KN: 256  K: 008  N032
 
 Simulation Results:
-Miss Rate:    0.452417
-Run Time:    11.00 ms
+Miss Rate:    0.532450
+Run Time:    18.00 ms
 ---------------------------------------------------
 Running Simulation #16:
 Simulation Type: FIFO
@@ -142,5 +142,5 @@ Cache Size: 2048 bytes
 KN: 256  K: 016  N016
 
 Simulation Results:
-Miss Rate:    0.404033
-Run Time:    18.00 ms
+Miss Rate:    0.453333
+Run Time:    16.00 ms
