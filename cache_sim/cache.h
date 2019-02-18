@@ -23,7 +23,6 @@
   int access(Cache* cache, int addr);
   int find_index(CacheSetNode* cache_set, int length);
   void init_cache(Cache* rp, int sim_type, int num_sets, int num_lines_per_set);
-  void init_cache_set(CacheSetNode* cache_set, int tag);
   void append(CacheSetNode* node, int tag);
   void prepend(CacheSetNode* cache_set, int tag);
   void delete(CacheSetNode* cache_set, int index);

@@ -9,7 +9,6 @@ int access(Cache* cache, int addr) {
   // Search for tag in cache set
   CacheSetNode* cache_set = &cache->cache_sets[idx];
   int hit_index = find_index(cache_set, tag);
-
   cache->rp_fn(cache_set, hit_index, cache->num_lines_per_set, tag);
   return (hit_index != -1) ? 1 : 0;
 }
@@ -105,7 +104,22 @@ void print_cache_set(CacheSetNode cache_set) {
 }
 
 void replace_LRU(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
-  //printf("C Kills\n");
+  int set_size = find_length(*cache_set);
+  if (hit_index != -1) {
+    //int tag_hit = get_node(cache_set, hit_index)->tag;
+
+    delete(cache_set, hit_index);
+    prepend(cache_set, tag);
+  }
+  else {
+    if (set_size <= n_lines) {
+      append(cache_set, tag);
+    }
+    else {
+      delete(cache_set, n_lines-1);
+      prepend(cache_set, tag);
+    }
+  }
 }
 
 void replace_FIFO(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
@@ -140,7 +154,9 @@ void init_cache(Cache* cache, int sim_type, int num_sets, int num_lines_per_set)
     exit(0);
   }
   for (int i = 0; i < num_sets; i++) {
-    init_cache_set(&cache->cache_sets[i], -1);
+    cache->cache_sets[i].prev = NULL;
+    cache->cache_sets[i].next = NULL;
+    cache->cache_sets[i].tag = -1;
   }
   // DEBUG BEGIN
   //append(&cache->cache_sets[0], 15);
@@ -151,8 +167,9 @@ void init_cache(Cache* cache, int sim_type, int num_sets, int num_lines_per_set)
   //append(&cache->cache_sets[0], 102);
   //append(&cache->cache_sets[0], 103);
   //prepend(&cache->cache_sets[0], 199);
-  //delete(&cache->cache_sets[0], 5);
-  //replace_FIFO(&cache->cache_sets[0], 4, num_lines_per_set, 343);
+  //delete(&cache->cache_sets[0], 6);
+  //print_cache_set(cache->cache_sets[0]);
+  //replace_FIFO(&cache->cache_sets[0], 4, num_lines_per_set, 101);
   //print_cache_set(cache->cache_sets[0]);
 
   //printf("NUMSETS: %04d  LEN: %d  IDX: %d\n", 100, find_length(cache->cache_sets[0]), find_index(&cache->cache_sets[0], 103));
@@ -162,12 +179,5 @@ void init_cache(Cache* cache, int sim_type, int num_sets, int num_lines_per_set)
   //printf("idx_bits %06x\n", cache->idx_mask);
   //printf("Num Sets: %d\n", num_sets);
   // DEBUG END
-  return;
-}
-
-void init_cache_set(CacheSetNode* node, int tag) {
-  node->prev = NULL;
-  node->next = NULL;
-  node->tag = tag;
   return;
 }

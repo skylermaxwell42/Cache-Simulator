@@ -34,21 +34,15 @@ void configure_simulations(Simulation sims[]) {
 void run_simulation(Simulation sim, SimulationResult* sim_result, uint8_t data[][NUM_BYTES_PER_REF]) {
   sim_result->num_misses = 0;
   sim_result->num_refernces = 0;
-  //printf("HELOOOO: %d\n", sim.cache.cache_sets[0].tag);
   for (int data_idx = 0; data_idx < NUM_MEM_REFS; data_idx++) {
     int addr = 0;
     for (int i = 0; i < NUM_BYTES_PER_REF; i++) {
       addr |= (data[data_idx][i]<<(8*i));
     }
-    //printf("Accessing Cache with addr: %06x\n", addr);
     if (!access(&sim.cache, addr)) {
         sim_result->num_misses++;
     }
     sim_result->num_refernces++;
-    if (data_idx == 10000) {
-      break;
-    }
-    //printf("MIS RATE: %f\n", (float) sim_result->num_misses/sim_result->num_refernces);
   }
 }
 
