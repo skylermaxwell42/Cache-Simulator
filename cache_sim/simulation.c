@@ -20,10 +20,6 @@ void configure_simulations(Simulation sims[]) {
         int n = kn / k;
 
         init_simulation(&sims[i], k, n, sim_types[sim_idx]);
-
-        // DEBUG START
-        //printf("Sim Type: %d k: %02d n: %03d I: %02d\n", sims[i].cache.sim_type, sims[i].k, sims[i].n, i);
-        // DEBUG END
         i++;
       }
     }
@@ -50,6 +46,7 @@ void init_simulation(Simulation* sim, int k, int n, int sim_type) {
   sim->l = NUM_BYTES_PER_LINES;
   sim->k = k;
   sim->n = n;
+  sim->sim_type = sim_type;
   init_cache(&sim->cache, sim_type, n, k);
   sim->cache_size_bytes = NUM_BYTES_PER_LINES * k * n;
 }

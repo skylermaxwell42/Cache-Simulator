@@ -9,6 +9,7 @@
     int l;                  // Number of bytes per line of cache memory
     int k;                  // Number of lines per set
     int n;                  // Number of sets
+    int sim_type;
     int cache_size_bytes;
     int idx_mask;
     int tag_mask;

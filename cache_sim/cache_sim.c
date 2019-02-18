@@ -26,15 +26,6 @@ int main(int argc, char* argv[]) {
   Simulation sims[NUM_SIMS_PER_TYPE*NUM_SIM_TYPES];
   configure_simulations(sims);
 
-  // DEBUG BEGIN
-  /**
-  for (int i=0;i<16;i++) {
-    Simulation s = sims[i];
-    printf("SIM: %d - K: %02d - KN:%03d - Cache Size: %04d bytes\n",s.sim_type, s.k, s.k*s.n, s.cache_size_bytes);
-  }
-  **/
-  // DEBUG END
-
   // Allocating space for memory trace data
   uint8_t data[NUM_MEM_REFS][NUM_BYTES_PER_REF];
   // Parsing memory trace file into data[][] as uint8_t bytes
@@ -46,16 +37,18 @@ int main(int argc, char* argv[]) {
 
   SimulationResult sim_results[NUM_SIMS_PER_TYPE*NUM_SIM_TYPES];
   for (int sim_idx = 0; sim_idx < NUM_SIMS_PER_TYPE*NUM_SIM_TYPES; sim_idx++) {
-    run_simulation(sims[sim_idx], &sim_results[sim_idx], data);
-    printf("Simulation #%02d Miss Rate: %f\n", sim_idx+1, (float) sim_results[sim_idx].num_misses/sim_results[sim_idx].num_refernces);
+    Simulation sim = sims[sim_idx];
+    printf("---------------------------------------------------\n");
+    printf("Running Simulation #%02d:\n", sim_idx+1);
+    printf("Simulation Type: %s\n", (sim.sim_type==SIM_TYPE_LRU)?"LRU":"FIFO");
+    printf("Cache Size: %d bytes\nKN: %03d  K: %03d  N%03d\n\n", sim.cache_size_bytes, sim.n*sim.k, sim.k, sim.n);
+    clock_t toc = clock();
+    run_simulation(sim, &sim_results[sim_idx], data);
+    clock_t tic = clock();
+    double miss_rate = (double) sim_results[sim_idx].num_misses/sim_results[sim_idx].num_refernces;
+    double run_time = (double) (((tic - toc)*1000) / CLOCKS_PER_SEC);
+    printf("Simulation Results:\nMiss Rate:    %f\nRun Time:    %02.2f ms\n", miss_rate, run_time);
   }
-  // DEBUG START
-  /**
-  for (int i=0; i<0; i++) {
-    printf("0x%02x%02x%02x\n", data[i][0], data[i][1], data[i][2]);
-  }
-  **/
-  // DEBUG END
 
   return 0;
 }

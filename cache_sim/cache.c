@@ -4,7 +4,6 @@ int access(Cache* cache, int addr) {
   int idx_bits = log2(cache->num_sets);
   int tag = (addr & cache->tag_mask) >> (int) (idx_bits + log2(NUM_BYTES_PER_LINES));
   int idx = (addr & cache->idx_mask) >> (int) log2(NUM_BYTES_PER_LINES);
-  //printf("Addr: %06x Tag: %04x Idx: %04x IDX: %d\n", addr, tag, idx, idx);
 
   // Search for tag in cache set
   CacheSetNode* cache_set = &cache->cache_sets[idx];
@@ -106,8 +105,6 @@ void print_cache_set(CacheSetNode cache_set) {
 void replace_LRU(CacheSetNode* cache_set, int hit_index, int n_lines, int tag) {
   int set_size = find_length(*cache_set);
   if (hit_index != -1) {
-    //int tag_hit = get_node(cache_set, hit_index)->tag;
-
     delete(cache_set, hit_index);
     prepend(cache_set, tag);
   }
@@ -173,8 +170,7 @@ void init_cache(Cache* cache, int sim_type, int num_sets, int num_lines_per_set)
   //print_cache_set(cache->cache_sets[0]);
 
   //printf("NUMSETS: %04d  LEN: %d  IDX: %d\n", 100, find_length(cache->cache_sets[0]), find_index(&cache->cache_sets[0], 103));
-  // DEBUG END
-  // DEBUG START
+
   //printf("tag_bits %06x\n", cache->tag_mask);
   //printf("idx_bits %06x\n", cache->idx_mask);
   //printf("Num Sets: %d\n", num_sets);

@@ -31,6 +31,4 @@
   void print_cache_set(CacheSetNode cache_set);
   void replace_LRU(CacheSetNode* cache_set, int hit_index, int n_lines, int tag);
   void replace_FIFO(CacheSetNode* cache_set, int hit_index, int n_lines, int tag);
-
-
 #endif
